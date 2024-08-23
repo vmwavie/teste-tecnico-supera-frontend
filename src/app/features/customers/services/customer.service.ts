@@ -5,6 +5,7 @@ import {
   Customer,
   CustomerResponse,
   DeleteResponse,
+  NewCustomer,
   UniqCustomerResponse,
   UpdateCustomer,
 } from '../models/costumer.model';
@@ -38,6 +39,13 @@ export class CustomerService {
   updateCustomer(customer: Customer): Observable<UpdateCustomer> {
     return this.http.put<UpdateCustomer>(
       `${this.apiUrl}/costumers/update`,
+      customer
+    );
+  }
+
+  addCustomer(customer: NewCustomer): Observable<UniqCustomerResponse> {
+    return this.http.post<UniqCustomerResponse>(
+      `${this.apiUrl}/costumers/create`,
       customer
     );
   }

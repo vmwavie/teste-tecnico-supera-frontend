@@ -1,0 +1,49 @@
+<div
+  ref="edit-customer-modal"
+  *ngIf="isOpened"
+  class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+  <div
+    class="bg-primaryLight dark:bg-primaryDark text-black dark:text-white p-6 rounded relative w-96">
+    <button
+      class="absolute top-2 right-2 text-black text-black dark:text-white"
+      (click)="handleCloseModal()">
+      X
+    </button>
+    <h2 class="text-xl font-bold mb-4">Create Customer</h2>
+    <form (ngSubmit)="save()">
+      <div class="mb-4">
+        <label for="name" class="block text-sm font-medium">Name</label>
+        <input
+          type="text"
+          [(ngModel)]="newCustomer.name"
+          name="name"
+          class="mt-1 block w-full px-3 py-2 border border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm dark:bg-tertiaryDark bg-tertiaryLight"
+          required />
+      </div>
+      <div class="mb-4">
+        <label for="cpf" class="block text-sm font-medium">Cpf</label>
+        <input
+          [(ngModel)]="newCustomer.cpf"
+          name="cpf"
+          mask="000.000.000-00"
+          class="mt-1 block w-full px-3 py-2 border border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm dark:bg-tertiaryDark bg-tertiaryLight"
+          required />
+      </div>
+      <div class="mb-4">
+        <label for="phone" class="block text-sm font-medium">Phone</label>
+        <input
+          type="text"
+          [(ngModel)]="newCustomer.whatsapp"
+          name="phone"
+          mask="(00) 00000-0000"
+          class="mt-1 block w-full px-3 py-2 border border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm dark:bg-tertiaryDark bg-tertiaryLight"
+          required />
+      </div>
+      <div class="flex justify-center">
+        <button type="submit" class="submit-button text-black dark:text-white">
+          Create
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

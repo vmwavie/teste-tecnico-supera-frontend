@@ -3,6 +3,7 @@ import { CustomerService } from '../../services/customer.service';
 import Swal from 'sweetalert2';
 import { Customer } from '../../models/costumer.model';
 import { CustomerEditModalComponent } from '../customer-edit-modal/customer-edit-modal.component';
+import { CustomerAddModalComponent } from '../customer-add-modal/customer-add-modal.component';
 
 @Component({
   selector: 'app-customer-list',
@@ -17,6 +18,8 @@ export class CustomerListComponent implements OnInit {
 
   constructor(private customerService: CustomerService) {}
   @ViewChild(CustomerEditModalComponent) editModal!: CustomerEditModalComponent;
+  @ViewChild(CustomerAddModalComponent)
+  addCustomerModal!: CustomerAddModalComponent;
 
   ngOnInit(): void {
     this.loadCustomers();
@@ -34,7 +37,7 @@ export class CustomerListComponent implements OnInit {
   }
 
   addCustomer(): void {
-    // Logic to add a customer
+    return this.addCustomerModal.handleOpenModal();
   }
 
   deleteCustomer(customerId: number): void {
@@ -51,6 +54,7 @@ export class CustomerListComponent implements OnInit {
       },
     }).then(value => {
       if (value.isConfirmed) {
+        this.loadCustomers();
         this.customerService.deleteCustomer(customerId).subscribe({
           next: (_value: unknown) => {
             console.log('Customer deleted successfully', _value);
@@ -84,12 +88,10 @@ export class CustomerListComponent implements OnInit {
         });
       }
     });
-
-    this.loadCustomers();
   }
 
   previousPage(): void {
-    if (this.currentPage > 1) {
+    if (this.currentPage > 0) {
       this.currentPage--;
       this.loadCustomers();
     }
