@@ -1,27 +1,49 @@
-# Frontend
+# Angular Crud
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.1.
+This is a technical test for the <b>Supera Sistemas</b> interview.
 
-## Development server
+## Preview
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+#### Light Mode :
 
-## Code scaffolding
+![Light Theme](./.github-assets/light.png)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+#### Dark Mode :
 
-## Build
+![Dark Theme](./.github-assets/dark.png)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Running
 
-## Running unit tests
+You can run this app in your favorite IDE or generate the nodejs build and run it through the command line.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Prerequisites
 
-## Running end-to-end tests
+For run it's is necessary have nodejs >=20 installed in your machine, and have [backend](https://github.com/vmwavie/teste-tecnico-supera-backend) in your machine.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Angular 18 CLI:
 
-## Further help
+```sh
+npm install -g @angular/cli@18
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+If you want to run this project in Docker, you should download Docker from the [Docker Website](https://docs.docker.com/get-started/get-docker/).
+
+### Running through the command line
+
+This project can be run from the project root with the command:
+
+```sh
+npm run start
+```
+
+This project can also be run with Docker using the command:
+
+```sh
+docker-compose up
+```
+
+If this command doesn't work, try the command below, as in some systems the command is:
+
+```sh
+docker compose up
+```
