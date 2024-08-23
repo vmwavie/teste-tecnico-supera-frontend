@@ -1,0 +1,59 @@
+<div class="container mx-auto p-4">
+  <app-customer-edit-modal></app-customer-edit-modal>
+  <div class="mb-4 flex items-center">
+    <input
+      type="text"
+      placeholder="Search customers..."
+      class="search-input bg-primaryLight dark:bg-primaryDark text-black dark:text-white p-2 flex-grow"
+      [(ngModel)]="searchTerm"
+      (input)="onSearch()" />
+    <button
+      class="add-button dark:bg-secondaryDark dark:hover:bg-secondaryDarkHover"
+      (click)="addCustomer()">
+      +
+    </button>
+  </div>
+  <ul class="list-disc pl-1">
+    <p
+      *ngIf="customers.length === 0"
+      class="m-24 text-black dark:text-white text-center">
+      No customers found.
+    </p>
+    <ng-container *ngIf="customers.length >= 1">
+      <li
+        *ngFor="let customer of customers"
+        class="flex justify-between items-center py-2">
+        <p class="text-black dark:text-white">{{ customer.name }}</p>
+        <div>
+          <button
+            class="edit-button cursor-pointer bg-yellow-500 text-white px-3 py-1 rounded ml-2"
+            (click)="editCustomer(customer.id)">
+            Edit
+          </button>
+          <button
+            class="delete-button cursor-pointer bg-red-500 text-white px-3 py-1 rounded ml-2"
+            (click)="deleteCustomer(customer.id)">
+            Delete
+          </button>
+        </div>
+      </li>
+    </ng-container>
+  </ul>
+  <div class="mt-4 flex justify-center">
+    <button
+      class="text-white dark:text-black change-page-button cursor-pointer dark:bg-secondaryDark dark:hover:bg-secondaryDarkHover px-4 py-2 rounded mr-2"
+      [disabled]="currentPage === 1"
+      (click)="previousPage()">
+      Previous
+    </button>
+    <p class="text-black dark:text-white mx-2 px-4 py-2 text-center">
+      Current Page : {{ currentPage + 1 }}
+    </p>
+    <button
+      class="text-white dark:text-black change-page-button cursor-pointer dark:bg-secondaryDark dark:hover:bg-secondaryDarkHover px-4 py-2 rounded ml-2"
+      [disabled]="customers.length < pageSize"
+      (click)="nextPage()">
+      Next
+    </button>
+  </div>
+</div>
