@@ -30,6 +30,12 @@ export class CustomerService {
     );
   }
 
+  getCustomerByText(searchTerm: string): Observable<CustomerResponse> {
+    return this.http.get<CustomerResponse>(
+      `${this.apiUrl}/costumers/get-by-text/${searchTerm}`
+    );
+  }
+
   deleteCustomer(id: number): Observable<DeleteResponse> {
     return this.http.delete<DeleteResponse>(
       `${this.apiUrl}/costumers/delete/${id}`

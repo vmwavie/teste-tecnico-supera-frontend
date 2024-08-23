@@ -26,17 +26,36 @@ export class CustomerListComponent implements OnInit {
   }
 
   onSearch(): void {
+    if (this.searchTerm.length <= 0) {
+      this.searchTerm = '';
+      this.loadCustomers();
+      return;
+    }
+
+    /* optmistic search, in database drops this way is used to get result more fast to user */
     const originalCustomers = [...this.customers];
+
     if (this.searchTerm) {
       this.customers = originalCustomers.filter(customer =>
         customer.name.toLowerCase().includes(this.searchTerm.toLowerCase())
       );
-    } else {
-      this.loadCustomers();
     }
+
+    this.customerService
+      .getCustomerByText(this.searchTerm.replace(/[-.()]/g, ''))
+      .subscribe({
+        next: value => {
+          this.customers = value.costumers;
+        },
+        error: error => {
+          console.error('Error fetching customers:', error.error.errorMessage);
+        },
+      });
   }
 
   addCustomer(): void {
+    this.searchTerm = '';
+    this.loadCustomers();
     return this.addCustomerModal.handleOpenModal();
   }
 
@@ -54,6 +73,7 @@ export class CustomerListComponent implements OnInit {
       },
     }).then(value => {
       if (value.isConfirmed) {
+        this.searchTerm = '';
         this.loadCustomers();
         this.customerService.deleteCustomer(customerId).subscribe({
           next: (_value: unknown) => {
