@@ -14,10 +14,10 @@
       +
     </button>
   </div>
-  <ul class="list-disc pl-1">
+  <ul class="list-disc pl-1 customers-list">
     <p
       *ngIf="customers.length === 0"
-      class="m-24 text-black dark:text-white text-center">
+      class="py-10 text-black dark:text-white text-center">
       No customers found.
     </p>
     <ng-container *ngIf="customers.length >= 1">
